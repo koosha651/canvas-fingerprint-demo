@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas Fingerprinting Demo</title>
+</head>
+<body>
+    <canvas id="fingerprintCanvas" width="200" height="200" style="border:1px solid #000;"></canvas>
+    <script>
+        var canvas = document.getElementById('fingerprintCanvas');
+        var ctx = canvas.getContext('2d');
+        // Draw something unique for each browser
+        ctx.textBaseline = 'top';
+        ctx.font = '14px "Arial"';
+        ctx.fillText(navigator.userAgent, 10, 10);
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(50, 50, 100, 100);
+
+        // Generate fingerprint
+        var dataURL = canvas.toDataURL();
+
+        // Display the fingerprint
+        document.body.appendChild(document.createTextNode('Your Fingerprint: ' + dataURL));
+    </script>
+</body>
+</html>
